@@ -1,0 +1,5 @@
+# Ignore environment files
+**/.env
+
+# Ignore Kubernetes secrets
+**/k8s/secret.yaml
