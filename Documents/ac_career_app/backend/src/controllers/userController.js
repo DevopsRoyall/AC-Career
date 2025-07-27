@@ -1,5 +1,10 @@
 // backend/src/controllers/userController.js
 
+const {
+  fetchCompletedPathsFromDB,
+  addCompletedPathToDB,
+} = require('../helpers/dbHelpers');
+
 const getCompletedPaths = async (req, res) => {
   try {
     const userId = req.user.sub; // Auth0 user ID
@@ -13,7 +18,7 @@ const getCompletedPaths = async (req, res) => {
   }
 };
 
-const updateCompletedPaths = async (req, res) => {
+const completePath = async (req, res) => {
   try {
     const userId = req.user.sub; // Auth0 user ID
     const { pathId } = req.body;
@@ -23,12 +28,12 @@ const updateCompletedPaths = async (req, res) => {
 
     res.status(200).json({ message: 'Completed paths updated successfully' });
   } catch (error) {
-    console.error('Error updating completed paths:', error);
+  console.error('Error updating completed paths:', error);
     res.status(500).json({ message: 'Server error updating completed paths' });
   }
 };
 
 module.exports = {
   getCompletedPaths,
-  updateCompletedPaths,
+  completePath,
 };
