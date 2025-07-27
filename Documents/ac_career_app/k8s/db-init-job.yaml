@@ -1,0 +1,50 @@
+# k8s/db-init-job.yaml
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-init
+spec:
+  template:
+    spec:
+      containers:
+        - name: db-init
+          image: postgres:13
+          env:
+            - name: POSTGRES_USER
+              value: "admin"
+            - name: POSTGRES_PASSWORD
+              value: "admin"
+            - name: POSTGRES_DB
+              value: "ac_career"
+          command: ["psql"]
+          args: ["-h", "postgres-service", "-U", "admin", "-d", "ac_career", "-f", "/init.sql"]
+          volumeMounts:
+            - name: init-script
+              mountPath: /init.sql
+              subPath: init.sql
+      restartPolicy: Never
+      volumes:
+        - name: init-script
+          configMap:
+            name: db-init-config
+  backoffLimit: 4
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-init-config
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS users (
+      id SERIAL PRIMARY KEY,
+      username VARCHAR(50) UNIQUE NOT NULL,
+      password VARCHAR(100) NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS progress (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER REFERENCES users(id),
+      node_id INTEGER NOT NULL,
+      unlocked BOOLEAN DEFAULT FALSE
+    );

@@ -1,0 +1,12 @@
+{"0":{"location":"body","msg":"Enter a valid email","path":"email","type":"field"},"1":{"location":"body","msg":"Password must be at least 6 characters","path":"password","type":"field"},"level":"warn","message":"Signup Validation Failed:","service":"ac-career-app-backend","timestamp":"2024-10-12 02:11:04"}
+{"level":"info","message":"Password hashed for user: testuser123456@example.com","service":"ac-career-app-backend","timestamp":"2024-10-12 14:23:25"}
+{"level":"info","message":"User created successfully: testuser123456@example.com","service":"ac-career-app-backend","timestamp":"2024-10-12 14:23:25"}
+{"level":"info","message":"JWT token generated for user: testuser123456@example.com","service":"ac-career-app-backend","timestamp":"2024-10-12 14:23:25"}
+{"0":{"location":"body","msg":"Password is required","path":"password","type":"field"},"level":"warn","message":"Login Validation Failed:","service":"ac-career-app-backend","timestamp":"2024-10-12 14:39:00"}
+{"0":{"location":"body","msg":"Password is required","path":"password","type":"field"},"level":"warn","message":"Login Validation Failed:","service":"ac-career-app-backend","timestamp":"2024-10-12 15:07:26"}
+{"0":{"location":"body","msg":"Password is required","path":"password","type":"field"},"level":"warn","message":"Login Validation Failed:","service":"ac-career-app-backend","timestamp":"2024-10-12 15:08:05"}
+{"0":{"location":"body","msg":"Password is required","path":"password","type":"field"},"level":"warn","message":"Login Validation Failed:","service":"ac-career-app-backend","timestamp":"2024-10-12 15:08:32"}
+{"0":{"location":"body","msg":"Password is required","path":"password","type":"field"},"level":"warn","message":"Login Validation Failed:","service":"ac-career-app-backend","timestamp":"2024-10-12 15:14:46"}
+{"level":"info","message":"Password hashed for user: testuser123456ddd@example.com","service":"ac-career-app-backend","timestamp":"2024-10-12 22:41:20"}
+{"level":"info","message":"User created successfully: testuser123456ddd@example.com","service":"ac-career-app-backend","timestamp":"2024-10-12 22:41:20"}
+{"level":"info","message":"JWT token generated for user: testuser123456ddd@example.com","service":"ac-career-app-backend","timestamp":"2024-10-12 22:41:20"}
