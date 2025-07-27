@@ -1,31 +1,23 @@
 // backend/src/middleware/authMiddleware.js
 
-const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const admin = require('../config/firebase');
 
 const authenticate = async (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization || '';
 
   // Check if Authorization header exists and is formatted correctly
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  if (!authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'Authorization header missing or malformed' });
   }
 
   const token = authHeader.split(' ')[1];
 
   try {
-    // Verify JWT token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Verify Firebase token
+    const decoded = await admin.auth().verifyIdToken(token);
 
-    // Find the user associated with the token
-    const user = await User.findByPk(decoded.id);
-
-    if (!user) {
-      return res.status(401).json({ message: 'User not found' });
-    }
-
-    // Attach user to request object
-    req.user = user;
+    // Attach decoded token info to request object
+    req.user = { uid: decoded.uid, email: decoded.email };
 
     next();
   } catch (error) {

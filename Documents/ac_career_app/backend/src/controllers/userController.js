@@ -2,7 +2,7 @@
 
 const getCompletedPaths = async (req, res) => {
   try {
-    const userId = req.user.sub; // Auth0 user ID
+    const userId = req.user.uid; // Firebase user ID
     // Fetch completed paths from your database using userId
     const completedPaths = await fetchCompletedPathsFromDB(userId);
 
@@ -15,7 +15,7 @@ const getCompletedPaths = async (req, res) => {
 
 const updateCompletedPaths = async (req, res) => {
   try {
-    const userId = req.user.sub; // Auth0 user ID
+    const userId = req.user.uid; // Firebase user ID
     const { pathId } = req.body;
 
     // Update completed paths in your database using userId and pathId
