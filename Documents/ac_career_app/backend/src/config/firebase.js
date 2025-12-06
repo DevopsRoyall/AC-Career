@@ -10,4 +10,9 @@ if (!admin.apps.length) {
   });
 }
 
+const db = admin.firestore();
+
+// Export default admin for existing require calls, but also expose db for convenience
 module.exports = admin;
+module.exports.admin = admin;
+module.exports.db = db;
